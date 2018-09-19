@@ -1,0 +1,6 @@
+<h1> Late Updates </h1>
+
+<% @updates.each do |update| %>
+<p> Beneficiary: <%= update.beneficiary.name %>,  Date: <%= update.formatted_date %>, Note: <%= update.notes %>, Complete <%= check_box_tag :complete, 1, update.complete %>
+  <%= link_to "Edit Note", edit_update_path(update) %></p>
+<% end %>

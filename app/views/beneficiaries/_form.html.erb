@@ -1,0 +1,31 @@
+<%= form_for @beneficiary do |f| %>
+  <% if @beneficiary.errors.any? %>
+    <div class="errors">
+      <h2>
+        <%= pluralize(@beneficiary.errors.count, "error") %> prohibited this beneficiary from being saved:
+      </h2>
+
+      <ul>
+      <% @beneficiary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fields_with_errors">
+    <p><%= f.label :name %>:  <%= f.text_field :name %></p>
+    
+    <p><%= f.label :date_of_birth, "Date of Birth" %>:  <%= f.date_field :date_of_birth %></p>
+    
+    <p><%= f.label :gender %>:  <%= f.text_field :gender %></p>
+    
+    <p><%= f.label :id_number %>:  <%= f.number_field :id_number %></p>
+    
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

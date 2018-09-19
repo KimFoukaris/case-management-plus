@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
+
+    <%= f.label :name, "Select your name" %><br>
+    <%= f.collection_select :name, @users, :name, :name %><br>
+
+    <%= f.label :password, "Enter your password" %><br>
+    <%= f.password_field :password %><br>
+
+    <%= f.submit "Log In" %><br>
+
+<% end %>
+
+<br>
+<%= link_to('Or Log in with Google!', '/auth/google_oauth2') %>

@@ -1,0 +1,31 @@
+<%= form_for @update do |f| %>
+  <% if @update.errors.any? %>
+    <div class="errors">
+      <h2>
+        <%= pluralize(@update.errors.count, "error") %> prohibited this update from being saved:
+      </h2>
+
+      <ul>
+      <% @update.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fields_with_errors">
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  
+    <%= f.hidden_field :beneficiary_id %>
+  
+    <p><%= f.label "Date" %>:  <%= f.date_field :date %></p>
+  
+    <p><%= f.label "Notes" %>:  <%= f.text_area :notes %></p>
+  
+    <p><%= f.label "Complete" %>:  <%= f.check_box :complete %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CaseManagementMvc</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+</head>
+
+<body>
+
+    <ul class="navbar">
+      <% if current_user %>
+        <li class="navbar"><%= link_to "Home", root_path %></li>
+        <li class="navbar"><%= link_to "Users", users_path %></li>
+        <li class="navbar"><%= link_to "Beneficiaries", beneficiaries_path %></li>
+        <li class="navbar"><%= link_to "Updates", updates_path %></li>
+        <li class="navbar"><%= link_to "Log Out", logout_path %></li>
+      <% else %>
+        <li class="navbar"><%= link_to "Home", root_path %></li>
+        <li class="navbar"><%= link_to "Sign Up", new_user_path %></li>
+        <li class="navbar"><%= link_to "Log In", login_path %></li>
+      <% end %>
+    </ul>
+
+<%= yield %>
+
+</body>
+</html>

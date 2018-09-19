@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="errors">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+      </h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fields_with_errors">
+    <p><%= f.label :name %>:  <%= f.text_field :name %></p>
+  
+    <p><%= f.label :title, "Job Title" %>:  <%= f.text_field :title %></p>
+  
+    <p><%= f.label :email %>:  <%= f.text_field :email %></p>
+  
+    <p><%= f.label :password %>:  <%= f.password_field :password %></p>
+  
+    <p><%= f.label :password_confirmation, "Please confirm your password" %>:  <%= f.password_field :password_confirmation %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
