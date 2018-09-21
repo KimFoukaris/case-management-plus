@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use ActiveModel serializer
+gem 'active_model_serializers'
+
 #Use Omnioath and omnioath-google for login option
 gem 'omniauth-google-oauth2'
 #gem 'omniauth', '~> 1.0'
