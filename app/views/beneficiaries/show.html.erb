@@ -7,6 +7,26 @@
     <p>ID number: <%= @beneficiary.id_number %></p>
     <p><%= link_to 'Edit Beneficiary Profile', edit_beneficiary_path(@beneficiary) %></p>
     <p><%#= link_to 'View Case Notes', beneficiary_updates_path(@beneficiary) %></p>
-    <button id="show-updates">View Case Notes</button>
-    <div id="updates">placeholder</div>
+    <button class="show-updates" data-id="<%= @beneficiary.id %>">View Case Notes</button>
+    <div id="updates" style="margin: 20px"></div>
   </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".show-updates").on("click", function() {
+      $('#updates').empty();
+      var id = $(this).data("id");
+      $.get("/beneficiaries/" + id + "/updates", function(data) {
+        var updates = data;
+        for (i=0; i< updates.length; i++) { 
+          update = updates[i]["id"];
+          date = updates[i]["date"];
+          note = updates[i]["notes"];
+          complete = updates[i]["complete"];
+          $("#updates").append("<p>" + update + ".  " + note + "  Date: " + date + "  Complete: " + complete + "</p>");
+        }   
+      });
+    });
+  });
+</script>
+

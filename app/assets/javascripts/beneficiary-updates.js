@@ -9,4 +9,7 @@ function attachListeners() {
 function showUpdates() {
     $('#updates').empty();
     $('#updates').append('testing');
+    $.get("/updates", function(data){
+        $("#updates").append(data);
+    });
 }

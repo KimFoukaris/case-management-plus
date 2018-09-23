@@ -6,8 +6,10 @@ class UpdatesController < ApplicationController
     if params[:beneficiary_id]
       @beneficiary = Beneficiary.find(params[:beneficiary_id])
       @updates = Beneficiary.find(params[:beneficiary_id]).updates
+      render json: @updates
     else
       @updates = Update.all
+      render json: @updates
     end
   end
 
