@@ -1,7 +1,31 @@
 <%= render '/users/notices' %>
 
+<h1> Display Update </h1>
+
 <div class="info">
-    <p>Date: <%= @update.formatted_date %>, Note: <%= @update.notes %>, Complete: <%= check_box_tag :complete, 1, @update.complete %></p>
-    <br>
+    <div id="update" style="margin: 20px">
+        <p>Date: <%= @update.formatted_date %>, Note: <%= @update.notes %>, Complete: <%= check_box_tag :complete, 1, @update.complete %></p>
+        <button class="next-update" data-id="<%= @update.id %>">Next Update</button>
+    <br></div>
     <%= link_to "Return to Beneficiary Updates", beneficiary_updates_path(@update.beneficiary) %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".edit-notes").on("click", function() {
+      $('#updates').empty();
+      var benid = $(this).data("id");
+      var updates_size = $(this).data("count");
+      $("#updates").append("<p>" + "Size = " + updates_size + "</p>");
+      $.get("/beneficiaries/" + benid + "/updates/" + updates_size, function(data) {
+        var update = data;
+          update = updates[i]["id"];
+          date = update["date"];
+          note = update["notes"];
+          complete = update["complete"];
+          $("#updates").append("<p>" + "Size = " + upsize + "   " + update + ".  " + note + "  Date: " + date + "  Complete: " + complete + "</p>");
+           
+      });
+    });
+  });
+</script>

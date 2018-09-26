@@ -9,7 +9,7 @@ class UpdatesController < ApplicationController
       render json: @updates
     else
       @updates = Update.all
-      render json: @updates
+      #render json: @updates
     end
   end
 

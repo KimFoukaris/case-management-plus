@@ -6,9 +6,9 @@
     <p>Gender: <%= @beneficiary.gender %></p>
     <p>ID number: <%= @beneficiary.id_number %></p>
     <p><%= link_to 'Edit Beneficiary Profile', edit_beneficiary_path(@beneficiary) %></p>
-    <p><%#= link_to 'View Case Notes', beneficiary_updates_path(@beneficiary) %></p>
     <button class="show-updates" data-id="<%= @beneficiary.id %>">View Case Notes</button>
     <div id="updates" style="margin: 20px"></div>
+    <p><%= link_to 'Edit Case Notes', beneficiary_update_path(@beneficiary, @beneficiary.updates.size) %></p>
   </div>
 
 <script type="text/javascript" charset="utf-8">
