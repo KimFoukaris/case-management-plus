@@ -1,6 +1,7 @@
 class Update < ActiveRecord::Base
   belongs_to :user
   belongs_to :beneficiary
+  has_many :comments
 
   validates :notes, presence: true
   validates :user_id, presence: true
