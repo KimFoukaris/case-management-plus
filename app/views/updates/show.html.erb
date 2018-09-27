@@ -1,30 +1,32 @@
 <%= render '/users/notices' %>
 
-<h1> Display Update </h1>
+<h1>Update for <%= @update.beneficiary.name %> </h1>
 
 <div class="info">
     <div id="update" style="margin: 20px">
-        <p>Date: <%= @update.formatted_date %>, Note: <%= @update.notes %>, Complete: <%= check_box_tag :complete, 1, @update.complete %></p>
-        <button class="next-update" data-id="<%= @update.id %>">Next Update</button>
-    <br></div>
+        <p><%= @update.id %>.  Date: <%= @update.formatted_date %>, Note: <%= @update.notes %>, Complete: <%= @update.complete %></p>
+    </div>
+    <button class="next-update" data-id="<%= @update.id %>" data-benid="<%= @update.beneficiary.id %>">View Next</button>
+    <br></br>
     <%= link_to "Return to Beneficiary Updates", beneficiary_updates_path(@update.beneficiary) %>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    $(".edit-notes").on("click", function() {
-      $('#updates').empty();
-      var benid = $(this).data("id");
-      var updates_size = $(this).data("count");
-      $("#updates").append("<p>" + "Size = " + updates_size + "</p>");
-      $.get("/beneficiaries/" + benid + "/updates/" + updates_size, function(data) {
-        var update = data;
-          update = updates[i]["id"];
-          date = update["date"];
-          note = update["notes"];
-          complete = update["complete"];
-          $("#updates").append("<p>" + "Size = " + upsize + "   " + update + ".  " + note + "  Date: " + date + "  Complete: " + complete + "</p>");
-           
+    $(".next-update").on("click", function() {
+        $('#update').empty();
+        var id = $(this).data("id");
+        if (id < 1) {
+            var nextid = id - 1;
+        };   
+        var benid = $(this).data("benid");
+        $.get("/beneficiaries/" + benid + "/updates", function(data) {
+            var updates = data;
+            update = updates[0]["id"];
+            date = updates[0]["date"];
+            note = updates[0]["notes"];
+            complete = updates[0]["complete"];
+            $("#update").append("<p>" + update + ".    Date: " + date + ", Note: " + note + "  Complete: " + complete + "</p>");
       });
     });
   });

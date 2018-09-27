@@ -18,12 +18,12 @@
       var id = $(this).data("id");
       $.get("/beneficiaries/" + id + "/updates", function(data) {
         var updates = data;
-        for (i=0; i< updates.length; i++) { 
+        for (i = updates.length -1; i > -1; i--) { 
           update = updates[i]["id"];
           date = updates[i]["date"];
           note = updates[i]["notes"];
           complete = updates[i]["complete"];
-          $("#updates").append("<p>" + update + ".  " + note + "  Date: " + date + "  Complete: " + complete + "</p>");
+          $("#updates").append("<p>" + update + ". Date: " + date + "  Note: " + note  + "  Complete: " + complete + "</p>");
         }   
       });
     });
