@@ -6,28 +6,32 @@
     <div id="update" style="margin: 20px">
         <p><%= @update.id %>.  Date: <%= @update.formatted_date %>, Note: <%= @update.notes %>, Complete: <%= @update.complete %></p>
     </div>
-    <button class="next-update" data-id="<%= @update.id %>" data-benid="<%= @update.beneficiary.id %>">View Next</button>
+    <button class="js-next" data-id="<%= @update.id %>" data-benid="<%= @update.beneficiary.id %>">View Next</button>
     <br></br>
     <%= link_to "Return to Beneficiary Updates", beneficiary_updates_path(@update.beneficiary) %>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    $(".next-update").on("click", function() {
+    $(".js-next").on("click", function() {
         $('#update').empty();
         var id = $(this).data("id");
-        if (id < 1) {
-            var nextid = id - 1;
+        if (id > -1) {
+            var nextid = id - 2;
         };   
         var benid = $(this).data("benid");
+        $("#update").append(nextid);
         $.get("/beneficiaries/" + benid + "/updates", function(data) {
             var updates = data;
-            update = updates[0]["id"];
-            date = updates[0]["date"];
-            note = updates[0]["notes"];
-            complete = updates[0]["complete"];
-            $("#update").append("<p>" + update + ".    Date: " + date + ", Note: " + note + "  Complete: " + complete + "</p>");
-      });
+            update = updates[nextid]["id"];
+            date = updates[nextid]["date"];
+            note = updates[nextid]["notes"];
+            complete = updates[nextid]["complete"];
+            $("#update").append("<p>" + update + ".    Date: " + date + ", Note: " + note + ",  Complete: " + complete + "</p>");
+            comment = updates[nextid]["comments"][0]["description"];
+            $("#update").append("<p>Comment:  " + comment + "</p>")
+            $("js-next").attr("data-id", nextid)
+         });
     });
   });
 </script>

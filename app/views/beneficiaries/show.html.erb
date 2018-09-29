@@ -23,7 +23,7 @@
           date = updates[i]["date"];
           note = updates[i]["notes"];
           complete = updates[i]["complete"];
-          $("#updates").append("<p>" + update + ". Date: " + date + "  Note: " + note  + "  Complete: " + complete + "</p>");
+          $("#updates").append("<p> Update: " + update + ". Date: " + date + "  <a href='http://localhost:3000/beneficiaries/" + id + "/updates/" + update + "'>View/Edit</a>" + "</p>");
         }   
       });
     });
