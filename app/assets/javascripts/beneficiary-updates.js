@@ -3,13 +3,10 @@ $(document).ready(function () {
 });
 
 function attachListeners() {
-   $('#show-updates').on('click', () => showUpdates());
+   $('#view-edit').on('click', () => viewUpdate());
+
 }
 
-function showUpdates() {
-    $('#updates').empty();
-    $('#updates').append('testing');
-    $.get("/updates", function(data){
-        $("#updates").append(data);
-    });
+function viewUpdate() {
+    $('#update').empty();
 }

@@ -33,6 +33,7 @@ class UpdatesController < ApplicationController
   def show
     @message = params[:message] if params[:message]
     @message ||= false
+    render json: @update
   end
 
   def edit
