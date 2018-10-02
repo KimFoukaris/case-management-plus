@@ -7,34 +7,13 @@
     <p>ID number: <%= @beneficiary.id_number %></p>
     <p><%= link_to 'Edit Beneficiary Profile', edit_beneficiary_path(@beneficiary) %></p>
     <button id="show-updates" data-id="<%= @beneficiary.id %>">List Case Notes</button>
-    <div id="updates" style="margin: 20px">placeholder</div>
-    <button class="view-edit" data-id="<%= @beneficiary.id %>" data-updateid="<%= @beneficiary.updates.size %>">Edit/View Last Note</button>
-    <div id="update" style="margin: 40px"></div>
+    <div id="updates" style="margin: 20px"></div>
+    <button class="view-update" data-id="<%= @beneficiary.id %>" data-updateid="<%= @beneficiary.updates.size %>">Edit/View Last Note</button>
+    <div id="update" style="margin: 40px">placeholder</div>
     <button class="js-previous" data-id="<%= @beneficiary.id %>" data-updateid="<%= @beneficiary.updates.size %>">Previous Note</button>
     </div>
 
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".view-edit").on("click", function() {
-      $('#update').empty();
-      let id = $(this).data("id");
-      let updateId = $(this).data("updateid");
-      $.get("/beneficiaries/" + id + "/updates/" + updateId, function(data) {
-        let update = data;
-        let updateDate = update["date"];
-        let updateNote = update["notes"];
-        let comments = update["comments"];
-        $("#update").append(`<p>Date: ${updateDate}, Note: ${updateNote}</p>`);
-        if(comments.length > 0) {
-          for (i = 0; i < comments.length; i++) {
-            comment = comments[i]["description"];
-            $("#update").append(`<p>Comment: ${comment}</p>`);
-          };
-        };
-      });
-    });
-  });
-</script>  
+
 
 
 

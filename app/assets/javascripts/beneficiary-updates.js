@@ -4,12 +4,27 @@ $(document).ready(function () {
 
 function attachListeners() {
    $('#show-updates').on('click', () => showUpdates());
-
+   $('.view-update').on('click', () => viewUpdate());
 }
 
 function viewUpdate() {
+    let id = $('.view-update').attr('data-id');
+    let updateId = $('.view-update').attr('data-updateid');
     $('#update').empty();
-}
+    $.get("/beneficiaries/" + id + "/updates/" + updateId, function(data) {
+        let update = data;
+        let updateDate = update["date"];
+        let updateNote = update["notes"];
+        let comments = update["comments"];
+        $("#update").append(`<p>Date: ${updateDate}, Note: ${updateNote}</p>`);
+        if(comments.length > 0) {
+            for (i = 0; i < comments.length; i++) {
+                comment = comments[i]["description"];
+                $("#update").append(`<p>Comment: ${comment}</p>`);
+            };
+        };
+    });
+};  
 
 function showUpdates() {
     let id = $('#show-updates').attr('data-id');
