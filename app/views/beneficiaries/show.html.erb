@@ -9,6 +9,7 @@
     <button id="show-updates" data-id="<%= @beneficiary.id %>">List Case Notes</button>
     <div id="updates" style="margin: 20px"></div>
     <div id="update" style="margin: 40px"></div>
+    <%= link_to "Create New Update", new_beneficiary_update_path(@beneficiary.id) %><br>
     </div>
 
 
