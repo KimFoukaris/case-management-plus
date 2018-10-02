@@ -9,62 +9,6 @@
             <p>Comment: <%= comment.description %></p>  
         <% end %>
     </div>
-    <button class="js-previous" data-id="<%= @update.id %>" data-benid="<%= @update.beneficiary.id %>">Previous</button>
-    <button class="js-next" data-id="<%= @update.id %>" data-size="<%= @update.beneficiary.updates.size %>" data-benid="<%= @update.beneficiary.id %>">Next</button>
-    <br></br>
     <%= link_to "Return to Beneficiary", beneficiary_path(@update.beneficiary) %>
 </div>
 
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".js-next").on("click", function() {
-        $('#update').empty();
-        var id = parseInt($(".js-next").attr("data-id"));
-        $("#update").append(id);
-        size = $(this).data("size")
-        $("#update").append(size);
-        if (id < size) {
-            var nextid = id + 1;
-            $("#update").append(nextid);
-        };   
-        var benid = $(this).data("benid");
-        $.get("/beneficiaries/" + benid + "/updates", function(data) {
-            var updates = data;
-            update = updates[id]["id"];
-            date = updates[id]["date"];
-            note = updates[id]["notes"];
-            complete = updates[id]["complete"];
-            $("#update").append("<p>" + update + ".    Date: " + date + ", Note: " + note + ",  Complete: " + complete + "</p>");
-            comment = updates[id]["comments"][0]["description"];
-            $("#update").append("<p>Comment:  " + comment + "</p>")
-            $(".js-previous").attr("data-id", nextid)
-            $(".js-next").attr("data-id", nextid)
-         });
-    });
-  });
-</script>
-
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".js-previous").on("click", function() {
-        $('#update').empty();
-        var id = parseInt($(".js-previous").attr("data-id"));
-        if (id > 0) {
-            var nextid = id - 1;
-        };   
-        var benid = $(this).data("benid");
-        $.get("/beneficiaries/" + benid + "/updates", function(data) {
-            var updates = data;
-            update = updates[nextid]["id"];
-            date = updates[nextid]["date"];
-            note = updates[nextid]["notes"];
-            complete = updates[nextid]["complete"];
-            $("#update").append("<p>" + update + ".    Date: " + date + ", Note: " + note + ",  Complete: " + complete + "</p>");
-            comment = updates[nextid]["comments"][0]["description"];
-            $("#update").append("<p>Comment:  " + comment + "</p>")
-            $(".js-previous").attr("data-id", nextid)
-            $(".js-next").attr("data-id", nextid)
-         });
-    });
-  });
-</script>

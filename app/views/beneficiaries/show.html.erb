@@ -8,9 +8,7 @@
     <p><%= link_to 'Edit Beneficiary Profile', edit_beneficiary_path(@beneficiary) %></p>
     <button id="show-updates" data-id="<%= @beneficiary.id %>">List Case Notes</button>
     <div id="updates" style="margin: 20px"></div>
-    <button class="view-update" data-id="<%= @beneficiary.id %>" data-updateid="<%= @beneficiary.updates.size %>">Edit/View Last Note</button>
-    <div id="update" style="margin: 40px">placeholder</div>
-    <button class="js-previous" data-id="<%= @beneficiary.id %>" data-updateid="<%= @beneficiary.updates.size %>">Previous Note</button>
+    <div id="update" style="margin: 40px"></div>
     </div>
 
 
