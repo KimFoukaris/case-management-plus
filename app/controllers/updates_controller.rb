@@ -25,6 +25,7 @@ class UpdatesController < ApplicationController
     @update = Update.new(update_params)
     if @update.save
       redirect_to beneficiary_update_path(params[:update][:beneficiary_id], @update), notice: 'Note was successfuly created'
+      #render json: @update, status: 201
     else
       render :new
     end

@@ -5,6 +5,11 @@ $(document).ready(function () {
 function attachListeners() {
    $('#show-updates').on('click', () => showUpdates());
    $('.view-update').on('click', () => viewUpdate());
+   $('#add-new-update').on('click', () => newUpdate());
+}
+
+function newUpdate(){
+    
 }
 
 function viewUpdate(updateId) {
@@ -22,9 +27,11 @@ function viewUpdate(updateId) {
         if(comments.length > 0) {
             for (i = 0; i < comments.length; i++) {
                 comment = comments[i]["description"];
-                $("#update").append(`<p>Comment: ${comment}</p>`);
+                date = comments[i]["created_at"];
+                $("#update").append(`<p>Comment: ${comment}, Date: ${date}</p>`);
             };
         };
+        $('#update').append(`<p><button id="add-comment" data-benid="${id}" data-updateid="${updateId}">Add Comment</button></p>`)
     });
 };  
 
