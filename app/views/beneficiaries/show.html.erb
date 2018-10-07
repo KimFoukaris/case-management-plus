@@ -7,8 +7,6 @@
     <p>ID number: <%= @beneficiary.id_number %></p>
     <p><%= link_to 'Edit Beneficiary Profile', edit_beneficiary_path(@beneficiary) %></p>
     <button id="show-updates" data-id="<%= @beneficiary.id %>">List Case Notes</button>
-    <button id="add-new-update">Add New Note</button>
-    <div id="new-update"></div>
     <div id="updates" style="margin: 20px"></div>
     <div id="update" style="margin: 40px"></div>
     <p><%= link_to 'Add New Update', new_beneficiary_update_path(@beneficiary) %></p>

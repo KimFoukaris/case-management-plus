@@ -5,11 +5,11 @@ $(document).ready(function () {
 function attachListeners() {
    $('#show-updates').on('click', () => showUpdates());
    $('.view-update').on('click', () => viewUpdate());
-   $('#add-new-update').on('click', () => newUpdate());
+   $('#add-comment').on('click', () => addComment());
 }
 
-function newUpdate(){
-    
+function addComment(){
+    $("#update").append('test addComment Listener');
 }
 
 function viewUpdate(updateId) {
@@ -32,6 +32,7 @@ function viewUpdate(updateId) {
             };
         };
         $('#update').append(`<p><button id="add-comment" data-benid="${id}" data-updateid="${updateId}">Add Comment</button></p>`)
+        $('#add-comment').on('click', () => addComment());
     });
 };  
 
