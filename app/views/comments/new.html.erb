@@ -1,0 +1,35 @@
+<%= form_for @comment do |f| %>
+      
+    <div>
+      <%= f.hidden_field :user_id %>
+    
+      <%= f.hidden_field :update_id %>
+    
+      <p><%= f.label "Comment" %>:  <%= f.text_field :description %></p>
+
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+  <% end %>
+
+  <div id="newComment">placeholder</div>
+  
+  <script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+ 
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/comments', values);
+ 
+      posting.done(function(data) {
+        var comment = data;
+        $("#commentDescription").text(comment["description"]);
+      });
+    });
+  });
+</script>

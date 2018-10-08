@@ -10,6 +10,7 @@ function attachListeners() {
 
 function addComment(){
     $("#update").append('test addComment Listener');
+    
 }
 
 function viewUpdate(updateId) {
