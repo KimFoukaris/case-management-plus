@@ -8,9 +8,8 @@ function attachListeners() {
    $('#add-comment').on('click', () => addComment());
 }
 
-function addComment(){
-    $("#update").append('test addComment Listener');
-    
+function addComment(id, updateId){
+    $("#update").append(`<a href="http://localhost:3000/beneficiaries/${id}/updates/${updateId}/comments/new ">Add Comment</a>`);
 }
 
 function viewUpdate(updateId) {
@@ -33,7 +32,7 @@ function viewUpdate(updateId) {
             };
         };
         $('#update').append(`<p><button id="add-comment" data-benid="${id}" data-updateid="${updateId}">Add Comment</button></p>`)
-        $('#add-comment').on('click', () => addComment());
+        $('#add-comment').on('click', () => addComment(id, updateId));
     });
 };  
 

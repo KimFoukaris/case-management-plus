@@ -12,12 +12,15 @@ Rails.application.routes.draw do
   resources :beneficiaries, only: [:index, :new, :create, :edit, :update]
 
   resources :beneficiaries, only: [:show] do
-    resources :updates, only: [:show, :index, :new]
+    resources :updates, only: [:show, :index, :new] do
+      resources :comments, only: [:new, :create]
+    end
   end
 
-  resources :updates, only: [:show, :index, :new, :create, :edit, :update]
+  resources :updates, only: [:index, :new, :create, :edit, :update]
 
-  resource :comments, only: [:new, :create]
+  resources :comments, only: [:new, :create]
+
 
   get '/reports/late_updates' => 'reports#late_updates'
   # The priority is based upon order of creation: first created -> highest priority.
