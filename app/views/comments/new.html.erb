@@ -28,7 +28,16 @@
  
       posting.done(function(data) {
         var comment = data;
+        function Comment(description, date){
+          this.description = description;
+          this.date = date;
+        }
+        Comment.prototype.commentDetails = function(){
+          return "Comment: " + this.description + " Dated: " + this.date;
+        }
+        var c = new Comment(comment["description"], comment["created_at"]);
         $("#newComment").text(comment["description"]);
+        $("#newComment").append(c.commentDetails());
       });
     });
   });
