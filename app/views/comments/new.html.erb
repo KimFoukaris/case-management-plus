@@ -14,14 +14,13 @@
     </div>
   <% end %>
 
-  <div id="newComment">placeholder</div>
+  <div id="newComment"></div>
   
   <script type="text/javascript" charset="utf-8">
   $(function () {
     $('form').submit(function(event) {
       //prevent form from submitting the default way
       event.preventDefault();
-      alert("check");
       var values = $(this).serialize();
  
       var posting = $.post('/comments', values);
@@ -33,10 +32,9 @@
           this.date = date;
         }
         Comment.prototype.commentDetails = function(){
-          return "Comment: " + this.description + " Dated: " + this.date;
+          return "Comment: " + this.description + " Dated: " + this.date.substring(0,10);
         }
         var c = new Comment(comment["description"], comment["created_at"]);
-        $("#newComment").text(comment["description"]);
         $("#newComment").append(c.commentDetails());
       });
     });

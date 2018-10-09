@@ -17,12 +17,12 @@ function viewUpdate(updateId) {
         let updateNote = update["notes"];
         let updateComplete = update["complete"];
         let comments = update["comments"];
-        $("#update").append(`<h4>Update ${updateId} Details</h4>`);
+        $("#update").append(`<h4>Case Note ${updateId} Details</h4>`);
         $("#update").append(`<p>Date: ${updateDate}, Note: ${updateNote}, Complete: ${updateComplete}</p>`);
         if(comments.length > 0) {
             for (i = 0; i < comments.length; i++) {
                 comment = comments[i]["description"];
-                date = comments[i]["created_at"];
+                date = comments[i]["created_at"].substring(0,10);
                 $("#update").append(`<p>Comment: ${comment}, Date: ${date}</p>`);
             };
         };
@@ -40,7 +40,7 @@ function showUpdates() {
             let date = updates[i]["date"];
             let note = updates[i]["notes"];
             let complete = updates[i]["complete"];
-            $("#updates").append(`<p>Update ${update}: ${note} <button id="updateid-${update}">Details</button></p>`);
+            $("#updates").append(`<p>Case Note ${update}: ${note} <button id="updateid-${update}">Details</button></p>`);
             $(`#updateid-${update}`).on('click', () => viewUpdate(update));
         };   
     });
