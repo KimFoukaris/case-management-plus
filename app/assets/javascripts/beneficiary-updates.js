@@ -11,6 +11,7 @@ function viewUpdate(updateId) {
     let id = $('.view-update').attr('data-id');
     //let updateId = $('.view-update').attr('data-updateid');
     $('#update').empty();
+    window.location.hash = '#update';
     $.get("/beneficiaries/" + id + "/updates/" + updateId, function(data) {
         let update = data;
         let updateDate = update["date"];
@@ -18,7 +19,7 @@ function viewUpdate(updateId) {
         let updateComplete = update["complete"];
         let comments = update["comments"];
         $("#update").append(`<h4>Case Note ${updateId} Details</h4>`);
-        $("#update").append(`<p>Date: ${updateDate}, Note: ${updateNote}, Complete: ${updateComplete}</p>`);
+        $("#update").append(`<p>${updateNote}  Date: ${updateDate}, Complete: ${updateComplete}</p>`);
         if(comments.length > 0) {
             for (i = 0; i < comments.length; i++) {
                 comment = comments[i]["description"];
