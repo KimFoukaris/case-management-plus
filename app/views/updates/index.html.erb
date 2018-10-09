@@ -1,12 +1,12 @@
 <% if @beneficiary.present? %>
-  <h1>Updates for <%= @beneficiary.name %></h1>
+  <h1>Case Notes for <%= @beneficiary.name %></h1>
 <% else %>
-  <h1> All Updates </h1>
+  <h1> All Case Notes </h1>
 <% end %>
 
 <% @updates.each do |update| %>
 <p> Date: <%= update.formatted_date %>, Note: <%= update.notes %>, Complete <%= check_box_tag :complete, 1, update.complete %>
-  <%= link_to "Edit Update", edit_update_path(update) %></p>
+  <%= link_to "Edit Case Note", edit_update_path(update) %></p>
 <% end %>
 
 <% if @beneficiary.present? %>
