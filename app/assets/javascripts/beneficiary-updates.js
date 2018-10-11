@@ -1,6 +1,10 @@
-$(document).ready(function () {
-   attachListeners();
-});
+$(document).on('turbolinks:load', function(){
+    attachListeners();
+})
+
+//$(document).ready(function () {
+ //  attachListeners();
+//});
 
 function attachListeners() {
    $('#show-updates').on('click', () => showUpdates());
