@@ -1,0 +1,44 @@
+<%= form_for Comment.new do |f| %>
+      
+    <div>
+      <%= f.hidden_field :user_id %>
+    
+      <p id="user-id"><%= f.hidden_field :update_id %></p>
+
+      <p><%= f.label "Comment" %>:  <%= f.text_field :description %></p>
+
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+  <% end %>
+
+  <div id="newComment"></div>
+  
+  <script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/comments', values);
+ 
+      posting.done(function(data) {
+        var comment = data;
+        function Comment(description, date){
+          this.description = description;
+          this.date = date;
+        }
+        Comment.prototype.commentDetails = function(){
+          return "<p>Comment: " + this.description + " Dated: " + this.date.substring(0,10) + "</p>";
+        }
+        var c = new Comment(comment["description"], comment["created_at"]);
+        $("#update").append(c.commentDetails());
+        $("#newComment").append(c.commentDetails());
+        $('#commentForm').hide();
+      });
+    });
+  });
+</script>

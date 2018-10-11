@@ -7,6 +7,12 @@ function attachListeners() {
    $('.view-update').on('click', () => viewUpdate());
 }
 
+function addComment(updateId) {
+   $('#commentForm').show(); 
+   $('#user-id').empty();   
+   $('#user-id').append(`<input id="comment_update_id" name="comment[update_id]" type="hidden" value="${updateId}">`);
+}
+
 function viewUpdate(updateId) {
     let id = $('.view-update').attr('data-id');
     //let updateId = $('.view-update').attr('data-updateid');
@@ -27,7 +33,9 @@ function viewUpdate(updateId) {
                 $("#update").append(`<p>Comment: ${comment}, Date: ${date}</p>`);
             };
         };
-        $("#update").append(`<a href="http://localhost:3000/beneficiaries/${id}/updates/${updateId}/comments/new ">Add Comment</a>`);
+        $("#update").append('<button id="add-comment">Add Comment</button>');
+        $('#add-comment').on('click', () => addComment(updateId));
+        //$("#update").append(`<a href="http://localhost:3000/beneficiaries/${id}/updates/${updateId}/comments/new ">Add Comment</a>`);
     });
 };  
 
