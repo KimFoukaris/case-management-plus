@@ -1,6 +1,7 @@
-# Case Management
+# Case Management Plus
 
 A Case Management MVC to keep track of staff, beneficiaries and case updates.
+Additional JS and JSON API features have been added to allow quicker review of Case Notes and addition of Comments directly from the Beneficiary page.
 
 ## Installation Instructions
 
